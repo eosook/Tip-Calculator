@@ -1,0 +1,260 @@
+$primary-cyan: hsl(172, 67%, 45%);
+
+$neutral-dark-cyan-800: hsl(183, 100%, 15%);
+$neutral-gray-cyan-800: hsl(186, 14%, 43%);
+$neutral-gray-cyan-500: hsl(184, 14%, 56%);
+$neutral-gray-cyan-300: hsl(185, 41%, 84%);
+$neutral-gray-cyan-100: hsl(189, 41%, 97%);
+$neutral-white: hsl(0, 0%, 100%);
+
+$font-size:(
+    "header" : 20px,
+    "inputs" : 24px,
+    "amounts" : 28px
+);
+
+$font-family: 'Space Mono', monospace;
+
+@mixin flex($justify){
+    display: flex;
+    align-items: center;
+    justify-content: $justify;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: $font-family;
+}
+
+body{
+    @include flex(space-between);
+    flex-direction: column;
+    background-color: $neutral-gray-cyan-300;
+    height: 100%;
+}
+
+.splitter-logo{
+    padding: 45px;
+}
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    background-color: $neutral-white;
+    border-radius: 20px 20px 0 0;
+    padding: 30px;
+    width: 100vw;
+    height: 100%;
+    box-sizing: border-box;
+
+    &-header{
+        font-size: map-get($font-size, header);
+        color: $neutral-gray-cyan-800;
+    }
+
+    &-bill{
+        width: 100%;
+
+        .dollar-icon{
+            position: absolute;
+            margin-left: 20px;
+        }
+
+        &-amount{
+            @include flex(space-between);
+            margin-bottom: 10px;
+
+            &-input{
+                text-align: right;
+                background-color: $neutral-gray-cyan-100;
+                color: $neutral-dark-cyan-800;
+                font-size: map-get($font-size, inputs);
+                padding: 15px;
+                border-radius: 5px;
+                border: none;
+                height: 30px;
+                width: 100%;
+                
+                &:focus{
+                    outline: 2px solid $primary-cyan;
+                }
+
+                &::placeholder{
+                    color: $neutral-dark-cyan-800;
+                }
+            }
+        }
+    }
+
+    .calculator-tip{
+        margin-top: 10px;
+
+        .tip-buttons{
+            @include flex(space-between);
+            flex-wrap: wrap;
+            row-gap: 20px;
+            margin-top: 20px;
+
+            .tip-button{
+                background-color: $neutral-dark-cyan-800;
+                color: $neutral-gray-cyan-100;
+                font-size: map-get($font-size, inputs);
+                border: none;
+                border-radius: 5px;
+                height: 60px;
+                width: 48%;
+
+                &:hover{
+                    background-color: $neutral-gray-cyan-300;
+                    color: $neutral-dark-cyan-800;
+                    cursor: pointer;
+                }
+
+                &:focus{
+                    background-color: $primary-cyan;
+                    color: $neutral-dark-cyan-800;
+                }
+            }
+
+            .tip-custom{
+                font-size: map-get($font-size, inputs);
+                background-color: $neutral-gray-cyan-100;
+                color: $neutral-gray-cyan-500;
+                border-radius: 5px;
+                border: none;
+                padding: 10px;
+                width: 40%;
+                text-align: right;
+
+                &:focus{
+                    outline: 2px solid $primary-cyan;
+                }
+
+                &::placeholder{
+                    color: $neutral-gray-cyan-500;
+                }
+            }
+        }
+    }
+
+    .calculator-people{
+        margin-top: 20px;
+
+        .zero-input{
+            font-size: map-get($font-size, inputs);
+            color: orange;
+        }
+
+        .calculator-header-bar{
+            @include flex(space-between);
+        }
+
+        &-bar{
+            @include flex(space-between);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .person-logo{
+            position: absolute;
+            margin-left: 20px;
+        }
+
+        &-input{
+            font-size: map-get($font-size, inputs);
+            background-color: $neutral-gray-cyan-100;
+            color: $neutral-dark-cyan-800;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            text-align: right;
+
+            &:focus{
+                outline: 2px solid $primary-cyan;
+            }
+
+            &::placeholder{
+                color: $neutral-dark-cyan-800;
+            }
+        }
+    }
+
+    .calculator-result{
+        background-color: $neutral-dark-cyan-800;
+        height: 250px;
+        border-radius: 20px;
+        padding: 30px;
+
+        &-tip{
+            @include flex(space-between);
+            margin: 20px 0 20px 0;
+        }
+
+        &-total{
+            @include flex(space-between);
+
+        }
+
+        .reset-button{
+            font-size: map-get($font-size, "header");
+            background-color: $primary-cyan;
+            color: $neutral-dark-cyan-800;
+            margin-top: 40px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            height: 60px;
+
+            &:hover{
+                cursor: pointer;
+                background-color: $neutral-gray-cyan-300;
+                color: $neutral-dark-cyan-800;
+            }
+        }
+
+        &-head{
+            font-size: map-get($font-size, "header");
+            color: $neutral-white;
+        }
+
+        &-per{
+            color: $neutral-gray-cyan-500;
+        }
+
+        &-amount{
+            font-size: map-get($font-size, amounts);
+            color: $primary-cyan;
+        }
+    }
+}
+
+@media (min-width: 600px){
+    .calculator{
+        flex-direction: row;
+        justify-content: space-around;
+        height: 50%;
+        width: 60%;
+        border-radius: 10px;
+
+        .calculator-result{
+            height: 450px;
+            width: 40%;
+            margin-left: 20px;
+
+            &-tip{
+                margin-bottom: 40px;
+            }
+
+            .reset-button{
+                margin-top: 140px;
+            }
+        }
+    }
+}
+
+.hidden{
+    display: none;
+}
